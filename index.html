@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Digital Skills</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500..700&family=Onest:wght@400..700&display=swap" rel="stylesheet">
+<style>
+/* Konsept: malaka oshirish hujjat tilida gapiradi: sertifikat, muhr, jadval.
+   Toʻq koʻk fon, ochiq koʻk siyoh, bitta kehribor muhr. */
+:root {
+  color-scheme: dark;
+  --bg: #0A1E3F;
+  --surface: #11295A;
+  --fg: #EAF1FB;
+  --muted: #A9BAD6;
+  --line: #254174;
+  --ink: #6FB3FF;
+  --ink-soft: #0F2750;
+  --on-ink: #06142B;
+  --stamp: #F0B23A;
+  --display: 'Literata', Georgia, 'Times New Roman', serif;
+  --body: 'Onest', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 16px; line-height: 1.6; }
+.wrap { max-width: 1080px; margin-inline: auto; padding-inline: 20px; }
+h1, h2, h3 { font-family: var(--display); font-weight: 700; line-height: 1.15; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+a { color: var(--ink); }
+:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; border-radius: 4px; }
+section { padding-block: 56px; scroll-margin-top: 8px; }
+.eyebrow { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; color: var(--ink); }
+.section-head { display: flex; flex-direction: column; gap: 8px; margin-bottom: 28px; max-width: 640px; }
+.section-head h2 { font-size: clamp(1.6rem, 3.6vw, 2.2rem); }
+.section-head p { color: var(--muted); }
+
+.notice { background: var(--ink-soft); font-size: 13px; padding-block: 8px; }
+.notice .wrap { display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.notice b { color: var(--stamp); letter-spacing: .06em; font-size: 12px; text-transform: uppercase; }
+header.top { padding-block: 16px; border-bottom: 1px solid var(--line); }
+header.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px 20px; flex-wrap: wrap; }
+.brand { font-family: var(--display); font-weight: 700; font-size: 1.15rem; text-decoration: none; color: var(--fg); display: flex; align-items: center; gap: 10px; }
+.logo { flex: none; }
+.brand-mark { width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--stamp); display: grid; place-items: center; font-size: 13px; color: var(--stamp); font-family: var(--display); }
+.right { display: flex; align-items: center; gap: 12px 24px; flex-wrap: wrap; }
+nav { display: flex; gap: 6px 20px; flex-wrap: wrap; }
+nav a { color: var(--fg); text-decoration: none; font-weight: 500; font-size: 15px; padding-block: 4px; border-bottom: 2px solid transparent; }
+nav a:hover { border-bottom-color: var(--ink); }
+.lang { display: flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+.lang button { font: inherit; font-size: 13px; font-weight: 600; padding: 5px 10px; border: 0; background: var(--surface); color: var(--fg); cursor: pointer; }
+.lang button[aria-pressed="true"] { background: var(--ink); color: var(--on-ink); }
+
+.hero { padding-block: 56px 48px; }
+.hero .wrap { display: grid; grid-template-columns: 1.15fr .85fr; gap: 48px; align-items: center; }
+.hero > .wrap > div { min-width: 0; }
+.hero h1 { font-size: clamp(2.1rem, 5.2vw, 3.5rem); margin-block: 14px 18px; }
+.hero .lede { font-size: 1.1rem; color: var(--muted); max-width: 52ch; }
+.actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
+.btn { font: inherit; font-weight: 600; font-size: 15px; padding: 12px 20px; border-radius: 8px; border: 2px solid var(--ink); cursor: pointer; text-decoration: none; display: inline-block; line-height: 1.2; }
+.btn-primary { background: var(--ink); color: var(--on-ink); }
+.btn-ghost { background: transparent; color: var(--ink); }
+.btn:hover { filter: brightness(1.08); }
+.formats { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 28px; padding: 0; list-style: none; }
+.formats li { font-size: 13px; padding: 4px 12px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); background: var(--surface); }
+
+.cert { margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 10px; }
+.cert-inner { border: 2px double var(--ink); padding: 26px 24px 20px; display: flex; flex-direction: column; gap: 14px; text-align: center; min-height: 300px; }
+.cert-kicker { font-size: 12px; letter-spacing: .3em; text-transform: uppercase; color: var(--ink); font-weight: 600; }
+.cert-title { font-family: var(--display); font-size: 1.7rem; font-weight: 700; line-height: 1.2; }
+.cert-line { border-bottom: 1px dashed var(--muted); padding-bottom: 6px; font-family: var(--display); color: var(--muted); font-size: 1.1rem; }
+.cert-text { font-size: 14px; color: var(--muted); max-width: 30ch; margin-inline: auto; }
+.cert-foot { margin-top: auto; display: flex; justify-content: space-between; align-items: end; font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.seal { width: 78px; height: 78px; border-radius: 50%; border: 2px solid var(--stamp); color: var(--stamp); display: grid; place-items: center; font-weight: 700; font-size: 10px; letter-spacing: .1em; transform: rotate(-9deg); box-shadow: inset 0 0 0 4px var(--surface), inset 0 0 0 5px var(--stamp); text-align: center; }
+
+.chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 22px; }
+.chip { font: inherit; font-size: 14px; font-weight: 500; padding: 7px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--on-ink); border-color: var(--ink); }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+.course { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.course .tag { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; color: var(--ink); }
+.course h3 { font-size: 1.15rem; }
+.meta { display: flex; gap: 14px; font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; flex-wrap: wrap; }
+.course .btn { margin-top: auto; align-self: flex-start; padding: 8px 14px; font-size: 14px; }
+.course .desc { color: var(--muted); font-size: 15px; }
+.sample-note { margin-top: 18px; font-size: 13px; color: var(--muted); }
+
+.alt { background: var(--ink-soft); }
+.steps { list-style: none; counter-reset: s; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 20px; }
+.steps li { counter-increment: s; border-top: 3px solid var(--ink); padding-top: 14px; min-width: 0; }
+.steps li::before { content: counter(s); font-family: var(--display); font-size: 1.8rem; font-weight: 700; color: var(--stamp); display: block; line-height: 1; margin-bottom: 8px; }
+.steps h3 { font-size: 1.05rem; margin-bottom: 6px; }
+.steps p { font-size: 14px; color: var(--muted); }
+
+.modes { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+.modes h3 { font-size: 1.1rem; margin-bottom: 6px; }
+.modes p { color: var(--muted); font-size: 15px; }
+
+.faq { max-width: 760px; }
+details { border-bottom: 1px solid var(--line); padding-block: 14px; }
+summary { cursor: pointer; font-weight: 600; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "+"; font-size: 1.3rem; line-height: 1; color: var(--ink); }
+details[open] summary::after { content: "−"; }
+details p { margin-top: 10px; color: var(--muted); }
+
+.contact { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+.contact .section-head { margin-bottom: 0; }
+dl { margin: 0; display: grid; gap: 0; }
+dl div { display: flex; flex-direction: column; gap: 2px; padding-block: 14px; border-bottom: 1px solid var(--line); }
+dl div:first-child { border-top: 1px solid var(--line); }
+dt { font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
+dd { margin: 0; font-weight: 500; font-size: 1.1rem; user-select: all; overflow-wrap: anywhere; }
+
+footer { border-top: 1px solid var(--line); padding-block: 28px; color: var(--muted); font-size: 14px; }
+
+@media (max-width: 820px) {
+  .hero .wrap, .contact { grid-template-columns: 1fr; gap: 32px; }
+  section { padding-block: 44px; }
+}
+</style>
+</head>
+<body>
+
+<div class="notice"><div class="wrap"><b data-i="notice_tag">Namuna</b><span data-i="notice">Kurs nomlari, soatlar va aloqa maʼlumotlari keyin sizning markazingiz bilan almashtiriladi.</span></div></div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#"><svg class="logo" viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><rect x="2" y="22" width="8" height="8" rx="2" fill="var(--ink)"/><rect x="12" y="22" width="8" height="8" rx="2" fill="var(--ink)"/><rect x="22" y="22" width="8" height="8" rx="2" fill="var(--ink)"/><rect x="12" y="12" width="8" height="8" rx="2" fill="var(--ink)"/><rect x="22" y="12" width="8" height="8" rx="2" fill="var(--ink)"/><rect x="22" y="2" width="8" height="8" rx="2" fill="var(--stamp)"/></svg>Digital Skills</a>
+    <div class="right">
+      <nav aria-label="Menu">
+        <a href="#kurslar" data-i="nav_courses">Kurslar</a>
+        <a href="#jarayon" data-i="nav_process">Jarayon</a>
+        <a href="#savollar" data-i="nav_faq">Savollar</a>
+        <a href="#aloqa" data-i="nav_contact">Aloqa</a>
+      </nav>
+      <div class="lang" id="lang" role="group" aria-label="Til / Язык / Language"></div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow" data-i="eyebrow">Raqamli malaka oshirish</p>
+        <h1 data-i="h1">Raqamli koʻnikmalar: ishda ishlaydigan bilim</h1>
+        <p class="lede" data-i="lede">Sunʼiy intellekt, ofis dasturlari va maʼlumotlar bilan ishlash boʻyicha qisqa amaliy kurslar. Kursni tanlaysiz, biz bilan bogʻlanasiz, oʻqiysiz va yakuniy baholashdan oʻtib sertifikat olasiz.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#kurslar" data-i="btn_courses">Kurslarni koʻrish</a>
+          <a class="btn btn-ghost" href="#aloqa" data-i="btn_contact">Bogʻlanish</a>
+        </div>
+        <ul class="formats">
+          <li data-i="fmt_kunduzgi">Kunduzgi</li>
+          <li data-i="fmt_masofaviy">Masofaviy</li>
+          <li data-i="fmt_aralash">Aralash</li>
+        </ul>
+      </div>
+      <figure class="cert">
+        <div class="cert-inner">
+          <p class="cert-kicker" data-i="cert_kicker">Sertifikat</p>
+          <p class="cert-title" data-i="cert_title">Malaka oshirish</p>
+          <p class="cert-line" data-i="cert_name">F.I.Sh.</p>
+          <p class="cert-text" data-i="cert_text">Kurs dasturini muvaffaqiyatli tugatgani uchun beriladi</p>
+          <div class="cert-foot"><span>№ 000000</span><span class="seal" aria-hidden="true" data-i="seal">NAMUNA</span></div>
+        </div>
+      </figure>
+    </div>
+  </div>
+
+  <section id="kurslar">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow" data-i="courses_eyebrow">Kurslar</p>
+        <h2 data-i="courses_h">Yoʻnalishni tanlang</h2>
+        <p data-i="courses_p">Har bir kurs amaliy mashgʻulotlar bilan oʻtiladi. Yoʻnalish boʻyicha saralang.</p>
+      </div>
+      <div class="chips" id="chips" role="group"></div>
+      <div class="grid" id="royxat"></div>
+      <p class="sample-note" data-i="sample_note">Kurs nomlari va soatlar namuna sifatida berilgan.</p>
+    </div>
+  </section>
+
+  <section id="jarayon" class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow" data-i="proc_eyebrow">Jarayon</p>
+        <h2 data-i="proc_h">Kursni tanlashdan sertifikatgacha</h2>
+      </div>
+      <ol class="steps">
+        <li><h3 data-i="s1_h">Tanlov</h3><p data-i="s1_p">Kurslar roʻyxatidan oʻzingizga mosini tanlaysiz.</p></li>
+        <li><h3 data-i="s2_h">Aloqa</h3><p data-i="s2_p">Biz bilan bogʻlanasiz, jadval va boshlanish sanasini kelishamiz.</p></li>
+        <li><h3 data-i="s3_h">Oʻqish</h3><p data-i="s3_p">Maʼruza va amaliy mashgʻulotlar tanlangan shaklda oʻtadi.</p></li>
+        <li><h3 data-i="s4_h">Yakuniy baholash</h3><p data-i="s4_p">Kurs oxirida bilimingiz sinovdan oʻtkaziladi.</p></li>
+        <li><h3 data-i="s5_h">Sertifikat</h3><p data-i="s5_p">Muvaffaqiyatli tugatganlarga sertifikat beriladi.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow" data-i="modes_eyebrow">Oʻqish shakllari</p>
+        <h2 data-i="modes_h">Oʻzingizga qulayini tanlang</h2>
+      </div>
+      <div class="modes">
+        <div><h3 data-i="fmt_kunduzgi">Kunduzgi</h3><p data-i="m1_p">Markazda, ustoz va guruh bilan yuzma-yuz mashgʻulotlar.</p></div>
+        <div><h3 data-i="fmt_masofaviy">Masofaviy</h3><p data-i="m2_p">Uyda yoki ishxonada, internet orqali, oʻzingizga qulay vaqtda.</p></div>
+        <div><h3 data-i="fmt_aralash">Aralash</h3><p data-i="m3_p">Nazariya masofadan, amaliy qism markazda oʻtadi.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="savollar" class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow" data-i="faq_eyebrow">Savollar</p>
+        <h2 data-i="faq_h">Koʻp beriladigan savollar</h2>
+      </div>
+      <div class="faq">
+        <details><summary data-i="q1">Kurs qancha davom etadi?</summary><p data-i="a1">Kursga qarab 24 soatdan 72 soatgacha. Aniq jadval guruh tuzilganda eʼlon qilinadi.</p></details>
+        <details><summary data-i="q2">Sertifikat qachon beriladi?</summary><p data-i="a2">Yakuniy baholashdan muvaffaqiyatli oʻtgan tinglovchilarga kurs tugagach beriladi.</p></details>
+        <details><summary data-i="q3">Masofaviy oʻqish mumkinmi?</summary><p data-i="a3">Ha, kurslarning bir qismi masofaviy yoki aralash shaklda oʻtadi. Kurs kartasidagi maʼlumotga qarang.</p></details>
+        <details><summary data-i="q4">Kursga qanday yozilaman?</summary><p data-i="a4">Quyidagi aloqa maʼlumotlari orqali biz bilan bogʻlaning, guruhga qabul jarayonini tushuntiramiz.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section id="havolalar">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow" data-i="links_eyebrow">Havolalar</p>
+        <h2 data-i="links_h">Foydali havolalar</h2>
+        <p data-i="links_p">Quyidagi saytlar boshqa tashkilotlarga tegishli.</p>
+      </div>
+      <div class="grid">
+        <article class="course">
+          <span class="tag" data-i="l_ext">Tashqi sayt</span>
+          <h3>ITStudy</h3>
+          <p class="desc" data-i="l1_d">Onlayn taʼlim platformasi: fanlarni oʻrganish va imtihon topshirish.</p>
+          <a class="btn btn-ghost" href="https://itstudy.uz/landing" target="_blank" rel="noopener noreferrer" data-i="l_open">Saytga oʻtish</a>
+        </article>
+        <article class="course">
+          <span class="tag" data-i="l_ext">Tashqi sayt</span>
+          <h3>Besh Million Sunʼiy Intellekt yetakchilari</h3>
+          <p class="desc" data-i="l2_d">Sunʼiy intellekt hamjamiyati: roʻyxatdan oʻtish va kurslar haqida maʼlumot.</p>
+          <a class="btn btn-ghost" href="https://aileaders.uz/" target="_blank" rel="noopener noreferrer" data-i="l_open">Saytga oʻtish</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="aloqa" class="alt">
+    <div class="wrap contact">
+      <div class="section-head">
+        <p class="eyebrow" data-i="contact_eyebrow">Aloqa</p>
+        <h2 data-i="contact_h">Biz bilan bogʻlaning</h2>
+        <p data-i="contact_p">Kurs haqida savollaringiz boʻlsa, yozing yoki qoʻngʻiroq qiling.</p>
+      </div>
+      <dl>
+        <div><dt data-i="c_phone">Telefon</dt><dd>+998 94 714-08-65</dd></div>
+        <div><dt data-i="c_tg">Telegram</dt><dd><a href="https://t.me/shuhrat_rtrm" target="_blank" rel="noopener noreferrer">@shuhrat_rtrm</a></dd></div>
+        <div><dt data-i="c_addr">Manzil</dt><dd data-i="v_addr">100164, Toshkent shahri, I. Muminov koʻchasi, 4-uy</dd></div>
+        <div><dt data-i="c_hours">Ish vaqti</dt><dd data-i="v_hours">Du–Ju, __:__–__:__</dd></div>
+      </dl>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap" data-i="footer">Digital Skills. Namunaviy sahifa: maʼlumotlar keyin almashtiriladi.</div>
+</footer>
+
+<script>
+const T = {"uz": {"notice_tag": "Namuna", "notice": "Kurs nomlari, soatlar va aloqa maʼlumotlari keyin sizning markazingiz bilan almashtiriladi.", "nav_courses": "Kurslar", "nav_process": "Jarayon", "nav_faq": "Savollar", "nav_contact": "Aloqa", "eyebrow": "Raqamli malaka oshirish", "h1": "Raqamli koʻnikmalar: ishda ishlaydigan bilim", "lede": "Sunʼiy intellekt, ofis dasturlari va maʼlumotlar bilan ishlash boʻyicha qisqa amaliy kurslar. Kursni tanlaysiz, biz bilan bogʻlanasiz, oʻqiysiz va yakuniy baholashdan oʻtib sertifikat olasiz.", "btn_courses": "Kurslarni koʻrish", "btn_contact": "Bogʻlanish", "fmt_kunduzgi": "Kunduzgi", "fmt_masofaviy": "Masofaviy", "fmt_aralash": "Aralash", "cert_kicker": "Sertifikat", "cert_title": "Malaka oshirish", "cert_name": "F.I.Sh.", "cert_text": "Kurs dasturini muvaffaqiyatli tugatgani uchun beriladi", "seal": "NAMUNA", "courses_eyebrow": "Kurslar", "courses_h": "Yoʻnalishni tanlang", "courses_p": "Har bir kurs amaliy mashgʻulotlar bilan oʻtiladi. Yoʻnalish boʻyicha saralang.", "tr_all": "Hammasi", "tr_ai": "Sunʼiy intellekt", "tr_office": "Ofis va maʼlumotlar", "tr_code": "Dasturlash", "tr_security": "Xavfsizlik", "tr_mgmt": "Boshqaruv", "hour": "soat", "ask": "Batafsil soʻrash", "sample_note": "Kurs nomlari va soatlar namuna sifatida berilgan.", "proc_eyebrow": "Jarayon", "proc_h": "Kursni tanlashdan sertifikatgacha", "s1_h": "Tanlov", "s1_p": "Kurslar roʻyxatidan oʻzingizga mosini tanlaysiz.", "s2_h": "Aloqa", "s2_p": "Biz bilan bogʻlanasiz, jadval va boshlanish sanasini kelishamiz.", "s3_h": "Oʻqish", "s3_p": "Maʼruza va amaliy mashgʻulotlar tanlangan shaklda oʻtadi.", "s4_h": "Yakuniy baholash", "s4_p": "Kurs oxirida bilimingiz sinovdan oʻtkaziladi.", "s5_h": "Sertifikat", "s5_p": "Muvaffaqiyatli tugatganlarga sertifikat beriladi.", "modes_eyebrow": "Oʻqish shakllari", "modes_h": "Oʻzingizga qulayini tanlang", "m1_p": "Markazda, ustoz va guruh bilan yuzma-yuz mashgʻulotlar.", "m2_p": "Uyda yoki ishxonada, internet orqali, oʻzingizga qulay vaqtda.", "m3_p": "Nazariya masofadan, amaliy qism markazda oʻtadi.", "faq_eyebrow": "Savollar", "faq_h": "Koʻp beriladigan savollar", "q1": "Kurs qancha davom etadi?", "a1": "Kursga qarab 24 soatdan 72 soatgacha. Aniq jadval guruh tuzilganda eʼlon qilinadi.", "q2": "Sertifikat qachon beriladi?", "a2": "Yakuniy baholashdan muvaffaqiyatli oʻtgan tinglovchilarga kurs tugagach beriladi.", "q3": "Masofaviy oʻqish mumkinmi?", "a3": "Ha, kurslarning bir qismi masofaviy yoki aralash shaklda oʻtadi. Kurs kartasidagi maʼlumotga qarang.", "q4": "Kursga qanday yozilaman?", "a4": "Quyidagi aloqa maʼlumotlari orqali biz bilan bogʻlaning, guruhga qabul jarayonini tushuntiramiz.", "contact_eyebrow": "Aloqa", "contact_h": "Biz bilan bogʻlaning", "contact_p": "Kurs haqida savollaringiz boʻlsa, yozing yoki qoʻngʻiroq qiling.", "c_phone": "Telefon", "c_tg": "Telegram", "c_addr": "Manzil", "c_hours": "Ish vaqti", "v_addr": "100164, Toshkent shahri, I. Muminov koʻchasi, 4-uy", "v_hours": "Du–Ju, __:__–__:__", "links_eyebrow": "Havolalar", "links_h": "Foydali havolalar", "links_p": "Quyidagi saytlar boshqa tashkilotlarga tegishli.", "l1_d": "Onlayn taʼlim platformasi: fanlarni oʻrganish va imtihon topshirish.", "l2_d": "Sunʼiy intellekt hamjamiyati: roʻyxatdan oʻtish va kurslar haqida maʼlumot.", "l_ext": "Tashqi sayt", "l_open": "Saytga oʻtish", "footer": "Digital Skills. Namunaviy sahifa: maʼlumotlar keyin almashtiriladi."}, "ru": {"notice_tag": "Образец", "notice": "Названия курсов, часы и контакты позже будут заменены данными вашего центра.", "nav_courses": "Курсы", "nav_process": "Процесс", "nav_faq": "Вопросы", "nav_contact": "Контакты", "eyebrow": "Цифровое повышение квалификации", "h1": "Цифровые навыки: знания, которые работают", "lede": "Короткие практические курсы по искусственному интеллекту, офисным программам и работе с данными. Вы выбираете курс, связываетесь с нами, проходите обучение и после итоговой оценки получаете сертификат.", "btn_courses": "Смотреть курсы", "btn_contact": "Связаться", "fmt_kunduzgi": "Очно", "fmt_masofaviy": "Дистанционно", "fmt_aralash": "Смешанный", "cert_kicker": "Сертификат", "cert_title": "Повышение квалификации", "cert_name": "Ф.И.О.", "cert_text": "Выдаётся за успешное завершение программы курса", "seal": "ОБРАЗЕЦ", "courses_eyebrow": "Курсы", "courses_h": "Выберите направление", "courses_p": "Каждый курс проходит с практическими занятиями. Отфильтруйте по направлению.", "tr_all": "Все", "tr_ai": "Искусственный интеллект", "tr_office": "Офис и данные", "tr_code": "Программирование", "tr_security": "Безопасность", "tr_mgmt": "Управление", "hour": "ч", "ask": "Узнать подробнее", "sample_note": "Названия курсов и часы приведены как образец.", "proc_eyebrow": "Процесс", "proc_h": "От выбора курса до сертификата", "s1_h": "Выбор", "s1_p": "Выбираете подходящий курс из списка.", "s2_h": "Связь", "s2_p": "Связываетесь с нами, согласуем расписание и дату начала.", "s3_h": "Обучение", "s3_p": "Лекции и практика проходят в выбранном формате.", "s4_h": "Итоговая оценка", "s4_p": "В конце курса ваши знания проверяются.", "s5_h": "Сертификат", "s5_p": "Успешно завершившим курс выдаётся сертификат.", "modes_eyebrow": "Форматы обучения", "modes_h": "Выберите удобный формат", "m1_p": "Занятия в центре, лицом к лицу с преподавателем и группой.", "m2_p": "Из дома или с работы, через интернет, в удобное время.", "m3_p": "Теория дистанционно, практика в центре.", "faq_eyebrow": "Вопросы", "faq_h": "Частые вопросы", "q1": "Сколько длится курс?", "a1": "В зависимости от курса от 24 до 72 часов. Точное расписание объявляется при наборе группы.", "q2": "Когда выдаётся сертификат?", "a2": "Слушателям, успешно прошедшим итоговую оценку, по окончании курса.", "q3": "Можно ли учиться дистанционно?", "a3": "Да, часть курсов проходит дистанционно или в смешанном формате. Смотрите карточку курса.", "q4": "Как записаться на курс?", "a4": "Свяжитесь с нами по контактам ниже, мы расскажем, как проходит набор в группу.", "contact_eyebrow": "Контакты", "contact_h": "Свяжитесь с нами", "contact_p": "Если есть вопросы о курсе, напишите или позвоните.", "c_phone": "Телефон", "c_tg": "Telegram", "c_addr": "Адрес", "c_hours": "Часы работы", "v_addr": "100164, г. Ташкент, ул. И. Муминова, 4", "v_hours": "Пн–Пт, __:__–__:__", "links_eyebrow": "Ссылки", "links_h": "Полезные ссылки", "links_p": "Сайты ниже принадлежат другим организациям.", "l1_d": "Онлайн-платформа обучения: изучение предметов и сдача экзаменов.", "l2_d": "Сообщество по искусственному интеллекту: регистрация и информация о курсах.", "l_ext": "Внешний сайт", "l_open": "Перейти на сайт", "footer": "Digital Skills. Пример страницы: данные будут заменены позже."}, "en": {"notice_tag": "Sample", "notice": "Course names, hours and contact details will later be replaced with your centre's own.", "nav_courses": "Courses", "nav_process": "Process", "nav_faq": "FAQ", "nav_contact": "Contact", "eyebrow": "Digital upskilling", "h1": "Digital skills: knowledge that works on the job", "lede": "Short, practical courses in artificial intelligence, office software and working with data. You choose a course, get in touch, study, and receive a certificate after the final assessment.", "btn_courses": "View courses", "btn_contact": "Contact us", "fmt_kunduzgi": "In person", "fmt_masofaviy": "Online", "fmt_aralash": "Blended", "cert_kicker": "Certificate", "cert_title": "Professional development", "cert_name": "Full name", "cert_text": "Awarded for successfully completing the course programme", "seal": "SAMPLE", "courses_eyebrow": "Courses", "courses_h": "Choose a track", "courses_p": "Every course includes hands-on practice. Filter by track.", "tr_all": "All", "tr_ai": "Artificial intelligence", "tr_office": "Office & data", "tr_code": "Programming", "tr_security": "Security", "tr_mgmt": "Management", "hour": "hours", "ask": "Ask for details", "sample_note": "Course names and hours are samples.", "proc_eyebrow": "Process", "proc_h": "From choosing a course to the certificate", "s1_h": "Choose", "s1_p": "You pick a suitable course from the list.", "s2_h": "Get in touch", "s2_p": "You contact us and we agree on the schedule and start date.", "s3_h": "Study", "s3_p": "Lectures and practice run in your chosen format.", "s4_h": "Final assessment", "s4_p": "At the end of the course your knowledge is assessed.", "s5_h": "Certificate", "s5_p": "Those who complete the course successfully receive a certificate.", "modes_eyebrow": "Learning formats", "modes_h": "Pick what suits you", "m1_p": "In-person sessions at the centre with an instructor and a group.", "m2_p": "From home or work, over the internet, at a time that suits you.", "m3_p": "Theory online, practice at the centre.", "faq_eyebrow": "FAQ", "faq_h": "Frequently asked questions", "q1": "How long is a course?", "a1": "Depending on the course, from 24 to 72 hours. The exact schedule is announced when a group is formed.", "q2": "When is the certificate issued?", "a2": "To learners who pass the final assessment, once the course ends.", "q3": "Can I study online?", "a3": "Yes, some courses run online or in a blended format. See the course card.", "q4": "How do I enrol?", "a4": "Contact us using the details below and we will explain how group enrolment works.", "contact_eyebrow": "Contact", "contact_h": "Get in touch", "contact_p": "If you have questions about a course, write or call us.", "c_phone": "Phone", "c_tg": "Telegram", "c_addr": "Address", "c_hours": "Hours", "v_addr": "100164, Tashkent, I. Muminov Street, 4", "v_hours": "Mon–Fri, __:__–__:__", "links_eyebrow": "Links", "links_h": "Useful links", "links_p": "The sites below belong to other organisations.", "l1_d": "Online learning platform: study subjects and take exams.", "l2_d": "AI community: registration and course information.", "l_ext": "External site", "l_open": "Visit site", "footer": "Digital Skills. Sample page: details will be replaced later."}};
+const COURSES = [{"y": "ai", "s": 36, "f": "masofaviy", "n": {"uz": "Sunʼiy intellekt asoslari: ishda qoʻllash", "ru": "Основы искусственного интеллекта: применение в работе", "en": "AI fundamentals: using it at work"}}, {"y": "ai", "s": 24, "f": "aralash", "n": {"uz": "Prompt muhandisligi amaliyoti", "ru": "Практикум по промпт-инжинирингу", "en": "Prompt engineering in practice"}}, {"y": "ai", "s": 36, "f": "masofaviy", "n": {"uz": "Darsda sunʼiy intellekt vositalari", "ru": "Инструменты ИИ на уроке", "en": "AI tools in the classroom"}}, {"y": "office", "s": 24, "f": "masofaviy", "n": {"uz": "Ofis ishida Excel va Word", "ru": "Excel и Word в офисной работе", "en": "Excel and Word for office work"}}, {"y": "office", "s": 36, "f": "aralash", "n": {"uz": "Maʼlumotlar tahlili asoslari", "ru": "Основы анализа данных", "en": "Data analysis basics"}}, {"y": "code", "s": 72, "f": "kunduzgi", "n": {"uz": "Python dasturlash asoslari", "ru": "Основы программирования на Python", "en": "Python programming basics"}}, {"y": "security", "s": 24, "f": "masofaviy", "n": {"uz": "Raqamli xavfsizlik asoslari", "ru": "Основы цифровой безопасности", "en": "Digital security basics"}}, {"y": "mgmt", "s": 36, "f": "aralash", "n": {"uz": "Muassasa rahbarlari uchun raqamli boshqaruv", "ru": "Цифровое управление для руководителей организаций", "en": "Digital management for organisation leaders"}}];
+const TRACKS = ["all", "ai", "office", "code", "security", "mgmt"];
+const LANGS = [["uz", "UZ"], ["ru", "RU"], ["en", "EN"]];
+let lang = "uz", track = "all";
+const t = k => T[lang][k];
+
+function applyStatic() {
+  document.documentElement.lang = lang;
+  document.querySelectorAll("[data-i]").forEach(el => { el.textContent = t(el.dataset.i); });
+}
+function renderLang() {
+  const box = document.getElementById("lang");
+  box.innerHTML = "";
+  LANGS.forEach(([code, label]) => {
+    const b = document.createElement("button");
+    b.type = "button"; b.textContent = label;
+    b.setAttribute("aria-pressed", String(code === lang));
+    b.addEventListener("click", () => setLang(code));
+    box.appendChild(b);
+  });
+}
+function renderChips() {
+  const box = document.getElementById("chips");
+  box.innerHTML = "";
+  TRACKS.forEach(k => {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "chip"; b.textContent = t("tr_" + k);
+    b.setAttribute("aria-pressed", String(k === track));
+    b.addEventListener("click", () => { track = k; renderChips(); renderCourses(); });
+    box.appendChild(b);
+  });
+}
+function renderCourses() {
+  const box = document.getElementById("royxat");
+  box.innerHTML = "";
+  COURSES.filter(c => track === "all" || c.y === track).forEach(c => {
+    const el = document.createElement("article");
+    el.className = "course";
+    const tag = document.createElement("span"); tag.className = "tag"; tag.textContent = t("tr_" + c.y);
+    const h = document.createElement("h3"); h.textContent = c.n[lang];
+    const meta = document.createElement("div"); meta.className = "meta";
+    const a = document.createElement("span"); a.textContent = c.s + " " + t("hour");
+    const f = document.createElement("span"); f.textContent = t("fmt_" + c.f);
+    meta.append(a, f);
+    const b = document.createElement("a");
+    b.className = "btn btn-ghost"; b.href = "#aloqa"; b.textContent = t("ask");
+    el.append(tag, h, meta, b);
+    box.appendChild(el);
+  });
+}
+function setLang(l) { lang = l; applyStatic(); renderLang(); renderChips(); renderCourses(); }
+setLang("uz");
+</script>
+
+</body>
+</html>
